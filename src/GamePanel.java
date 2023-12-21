@@ -27,7 +27,16 @@ public class GamePanel extends JPanel implements ActionListener {
 	int gen_obstacle = 0;
 	int j = 0, k = 0;
 	int Dificulty = 0;
+
 	Clip clip;
+	File[] music = new File[5];{
+		music[0] = new File("audio1.wav");
+		music[1] = new File("audio2.wav");
+		music[2] = new File("audio3.wav");
+		music[3] = new File("audio4.wav");
+		music[4] = new File("crash.wav");
+	}
+
 	boolean running = false;
 	boolean paused = false;
 	boolean game_over = false;
@@ -255,11 +264,6 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 	}
 	public void play_game_music() {
-        File[] music = new File[4];
-		music[0] = new File("audio1.wav");
-		music[1] = new File("audio2.wav");
-		music[2] = new File("audio3.wav");
-		music[3] = new File("audio4.wav");
 		int i = random.nextInt(4);
 		//System.out.println(i);
 		try {
@@ -272,9 +276,9 @@ public class GamePanel extends JPanel implements ActionListener {
         catch (Exception e) {e.printStackTrace();}  
 	}
 	public void play_crash_music() {
-        File crash = new File("crash.wav");
+        
         try {
-            AudioInputStream ai = AudioSystem.getAudioInputStream(crash);
+            AudioInputStream ai = AudioSystem.getAudioInputStream(music[4]);
             clip = AudioSystem.getClip();
             clip.open(ai);
             clip.start();
